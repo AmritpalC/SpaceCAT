@@ -1,12 +1,5 @@
 # SpaceCAT
 
-
-Lama
-<<<<<<< HEAD
-Hello!
-=======
-Hello!
-
-Hello CAT
-add something else
->>>>>>> costa-feature
+Hello
+We are trying to get this to work
+Llama
