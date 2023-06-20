@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 
+from .models import Satellite
+
 # New user
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -38,4 +40,11 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+def about(request):
+  return render(request, 'about.html')
 
+def satellites_index(request):
+  satellites = Satellite.objects.all()
+  return render(request, 'satellites/index.html', {
+    'satellites': satellites
+  })
