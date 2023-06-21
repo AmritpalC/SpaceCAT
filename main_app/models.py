@@ -16,9 +16,9 @@ class Satellite(models.Model):
     description = models.TextField(max_length=300)  
     
 class Apod(models.Model):
-    name = models.CharField(max_length=50)      
-    image = models.CharField(max_length=50)
-    description = models.TextField(max_length=300)  
+    title = models.CharField(max_length=50)      
+    url = models.CharField(max_length=50)
+    explanation = models.TextField(max_length=300)  
     date = models.DateField()   
 
 class Album(models.Model):

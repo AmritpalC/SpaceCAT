@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-
+import requests
+import environ
 from .models import Satellite
 
 # New user
@@ -15,6 +16,12 @@ from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.mixins import LoginRequiredMixin
 # importing above, we then add this to the class function like this e.g.
 # class CatCreate(LoginRequiredMixin, CreateView):
+
+env = environ.Env()
+environ.Env.read_env()
+
+token = env('NASA_KEY')
+ROOT_URL = 'https://api.nasa.gov'
 
 
 # Create your views here.
@@ -48,3 +55,15 @@ def satellites_index(request):
   return render(request, 'satellites/index.html', {
     'satellites': satellites
   })
+
+def apod_index(request):
+  selected_date = request.GET.get('date')
+  if not selected_date:
+    return render(request, 'apod/index.html', { 'imageData': None })
+
+  url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+  response = requests.get(url)
+  image_data = response.json()
+  return render(request, 'apod/index.html', { 'imageData': image_data })
+
+
