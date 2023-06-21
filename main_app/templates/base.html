@@ -20,6 +20,8 @@
                 <ul class="right">
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'logout' %}">Log Out</a></li>
+                        <li><a href="{% url 'albums_index' %}">All Albums</a></li>
+                        <li><a href="{% url 'albums_create' %}">Add an Album</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">Log In</a></li>
                         <li><a href="{% url 'signup' %}">Sign Up</a></li>

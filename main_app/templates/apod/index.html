@@ -11,6 +11,8 @@
         <h1> {{ imageData.date }}</h1>
         <p> {{ imageData.explanation }}</p>
         <img src="{{ imageData.url }}">
+    {% else %}
+        <h3>No image found, please try again</h3>
     {% endif %}
  </div>
 {% endblock %}

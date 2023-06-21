@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Album, Apod, Satellite
+from .forms import ApodForm
+
 import requests
 import environ
-from .models import Satellite
 
 # New user
 from django.contrib.auth import login
@@ -17,17 +21,17 @@ from django.contrib.auth.decorators import login_required
 # importing above, we then add this to the class function like this e.g.
 # class CatCreate(LoginRequiredMixin, CreateView):
 
+# Initialising env
 env = environ.Env()
 environ.Env.read_env()
 
-token = env('NASA_KEY')
-ROOT_URL = 'https://api.nasa.gov'
+# Root URL for APIs
+ROOT_URL = env('ROOT_URL')
 
+# APOD Key
+token = env('APOD_KEY')
 
-# Create your views here.
-def home(request):
-    return render(request, 'home.html')
-
+# Sign up 
 def signup(request):
   error_message = ''
   if request.method == 'POST':
@@ -47,6 +51,10 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
 
+# Create your views here.
+def home(request):
+    return render(request, 'home.html')
+
 def about(request):
   return render(request, 'about.html')
 
@@ -64,6 +72,42 @@ def apod_index(request):
   url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
   response = requests.get(url)
   image_data = response.json()
+  print(image_data)
   return render(request, 'apod/index.html', { 'imageData': image_data })
 
+def albums_index(request):
+  albums = Album.objects.all()
+  return render(request, 'albums/index.html', {
+    'albums': albums
+  })
 
+def albums_detail(request, album_id):
+  album = Album.objects.get(id=album_id)
+  # id_list = album.photos.all().values_list('id')
+  # add other bits after
+  return render(request, 'albums/detail.html', {
+    'album': album
+  })
+
+# CBVs for Albums
+class AlbumCreate(CreateView):
+  model = Album
+  fields = '__all__'
+
+class AlbumUpdate(UpdateView):
+  model = Album
+  fields = '__all__'
+
+class AlbumDelete(DeleteView):
+  model = Album
+  success_url = '/albums'
+
+
+def add_photo(request, album_id):
+  form = ApodForm(request.POST)
+  if form.is_valid():
+    new_photo = form.save(commit=False)
+    new_photo.album_id = album_id
+    new_photo.save()
+    return redirect('albums_index, album_id=album_id')
+  pass
