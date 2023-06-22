@@ -8,7 +8,11 @@ urlpatterns = [
 
     path('satellites/', views.satellites_index, name='satellites_index'),
 
+    path('apod/save', views.apod_save, name='apod_save'),
     path('apod/', views.apod_index, name='apod_index'),
+    path('apod/all', views.apod_all, name='apod_all'),
+    path('apod/delete/<int:apod_id>', views.apod_delete, name='apod_delete'),
+
 
     path('albums', views.albums_index, name='albums_index'),
     path('albums/<int:album_id>', views.albums_detail, name='albums_detail'),
@@ -17,6 +21,9 @@ urlpatterns = [
     path('albums/<int:pk>/delete/', views.AlbumDelete.as_view(), name='albums_delete'),
 
     path('albums/<int:album_id>/add_photo_to_album/<int:apod_id>', views.add_photo_to_album, name='add_photo_to_album'),
+    path('albums/<int:album_id>/remove_photo_from_album/<int:apod_id>', views.remove_photo_from_album, name='remove_photo_from_album'),
+
+
 
     path('albums/<int:album_id>/add_photo', views.add_photo, name='add_photo'),
 ]

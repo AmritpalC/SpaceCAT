@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>All Saved APOD</h1>
+
+{% for apod in apods %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ apod.url }}" class="card-img-top">
+        <div class="card-body">
+            <div class="card-title">{{ apod.title }}</div>
+            <div class="card-text">{{ apod.date }}</div>
+            <div class="card-action">
+                <form action="{% url 'apod_delete' apod.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
