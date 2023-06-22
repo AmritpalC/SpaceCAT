@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="{% url 'apod_index' %}" method="GET">
+    <input type="date" name="date">
+    <input type="submit" value="Get Picture">
+</form>
+<div>
+    {% if imageData %}
+        <h1> {{ imageData.title }}</h1>
+        <h1> {{ imageData.date }}</h1>
+        <p> {{ imageData.explanation }}</p>
+        <img src="{{ imageData.url }}">
+    {% else %}
+        <h3>No image found, please try again</h3>
+    {% endif %}
+ </div>
+{% endblock %}
