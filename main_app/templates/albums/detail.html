@@ -19,10 +19,16 @@
         <h3>{{ album.name }}'s Photos</h3>
         {% if album.apod_photos.count %}
             {% for apod in album.apod_photos.all %}
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{ apod.url }}">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ apod.url }}" class="card-img-top">
+                    <div class="card-body">
                         <span class="card-title">{{ apod.title }}</span>
+                        <div class="card-action">
+                            <form action="{% url 'remove_photo_from_album' album.id apod.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn">Remove</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

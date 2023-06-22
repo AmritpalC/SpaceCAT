@@ -81,6 +81,9 @@ def satellites_index(request):
     'satellites': satellites
   })
 
+
+# ? APODs
+
 def apod_index(request):
   selected_date = request.GET.get('date')
   if not selected_date:
@@ -91,6 +94,17 @@ def apod_index(request):
   image_data = response.json()
   # print(image_data)
   return render(request, 'apod/index.html', { 'imageData': image_data })
+
+def apod_all(request):
+  apods = Apod.objects.all()
+  return render(request, 'apod/all.html', {
+    'apods': apods
+  })
+
+def apod_delete(request, apod_id):
+  apod = Apod.objects.get(id=apod_id)
+  apod.delete()
+  return redirect('apod_all')
   
 def apod_save(request):
   print('HIT APODSAVE')
@@ -98,23 +112,28 @@ def apod_save(request):
   print('SELECTEDDATE', selected_date)
   if not selected_date:
     return render(request, 'apod/index.html', { 'imageData': None })
-
-  url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
-  response = requests.get(url)
-  image_data = response.json()
   
-  
-  if image_data:
-    apod = Apod.objects.create(
-      title=image_data['title'],
-      url=image_data['url'],
-      date=selected_date
-    )
+  try:
+    Apod.objects.get(date=selected_date)
+    print('APOD already saved')
+    return render(request, 'apod/index.html', { 'imageData': None, 'error': 'Picture already saved'})
+  except Apod.DoesNotExist:
+    url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+    response = requests.get(url)
+    image_data = response.json()
     
-    return render(request, 'apod/index.html', { 'imageData': image_data })
-  else:
-     return render(request, 'apod/index.html', { 'imageData': None })
-  
+    if image_data:
+      Apod.objects.create(
+        title=image_data['title'],
+        url=image_data['url'],
+        date=selected_date
+      )
+      return render(request, 'apod/index.html', { 'imageData': image_data })
+    else:
+      return render(request, 'apod/index.html', { 'imageData': None })
+
+
+# ? Albums
 
 def albums_index(request):
   albums = Album.objects.all()
@@ -148,7 +167,9 @@ def add_photo_to_album(request, album_id, apod_id):
   Album.objects.get(id=album_id).apod_photos.add(apod_id)
   return redirect('albums_detail', album_id=album_id)
                     
-
+def remove_photo_from_album(request, album_id, apod_id):
+  Album.objects.get(id=album_id).apod_photos.remove(apod_id)
+  return redirect('albums_detail', album_id=album_id)
 
 def add_photo(request, album_id):
   form = ApodForm(request.POST)

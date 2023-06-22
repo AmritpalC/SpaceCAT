@@ -16,7 +16,12 @@
         <p> {{ imageData.explanation }}</p>
         <img src="{{ imageData.url }}">
     {% else %}
-        <h3>No image found, please try again</h3>
+        <h4>No image selected or found, please try again</h4>
     {% endif %}
- </div>
+</div>
+<div>
+    {% if error %}
+        <h4>{{ error }}</h4>
+    {% endif %}
+</div>
 {% endblock %}
