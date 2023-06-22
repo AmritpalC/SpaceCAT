@@ -90,7 +90,18 @@ def apod_index(request):
   response = requests.get(url)
   image_data = response.json()
   print(image_data)
-  return render(request, 'apod/index.html', { 'imageData': image_data })
+
+  if image_data:
+    apod = Apod.objects.create(
+      title=image_data['title'],
+      url=image_data['url'],
+      date=selected_date
+    )
+    print(apod)
+    return render(request, 'apod/index.html', { 'imageData': image_data })
+  else:
+     return render(request, 'apod/index.html', { 'imageData': None })
+
 
 def albums_index(request):
   albums = Album.objects.all()
@@ -100,24 +111,30 @@ def albums_index(request):
 
 def albums_detail(request, album_id):
   album = Album.objects.get(id=album_id)
-  # id_list = album.photos.all().values_list('id')
+  id_list = album.apod_photos.all().values_list('id')
   # add other bits after
+  apod_photos_album_doesnt_have = Apod.objects.exclude(id__in=id_list)
   return render(request, 'albums/detail.html', {
-    'album': album
+    'album': album, 'apod_photos': apod_photos_album_doesnt_have
   })
 
 # CBVs for Albums
 class AlbumCreate(CreateView):
   model = Album
-  fields = '__all__'
+  fields = ['name', 'description']
 
 class AlbumUpdate(UpdateView):
   model = Album
-  fields = '__all__'
+  fields = ['name', 'description']
 
 class AlbumDelete(DeleteView):
   model = Album
   success_url = '/albums'
+
+def add_photo_to_album(request, album_id, apod_id):
+  Album.objects.get(id=album_id).apod_photos.add(apod_id)
+  return redirect('albums_detail', album_id=album_id)
+                    
 
 
 def add_photo(request, album_id):
