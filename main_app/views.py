@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+import requests
 from .models import Satellite
 
 # New user
@@ -19,7 +19,23 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    # Current Time and Location api
+    api_key = 'd34af97fcf764abfaf83458dfc0014bb'  # IP Geolocation API key
+    url = f'https://api.ipgeolocation.io/ipgeo?apiKey={api_key}'
+
+    response = requests.get(url)
+    data = response.json()
+
+    current_datetime = data['time_zone']['current_time']
+    location = data['country_code2']
+    city = data['city']
+
+    context = {
+        'current_datetime': current_datetime.split('.')[0],
+        'location': location,
+        'city': city
+    }
+    return render(request, 'home.html', context)
 
 def signup(request):
   error_message = ''
@@ -48,3 +64,7 @@ def satellites_index(request):
   return render(request, 'satellites/index.html', {
     'satellites': satellites
   })
+
+
+
+

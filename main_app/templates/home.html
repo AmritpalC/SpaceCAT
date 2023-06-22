@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<p>{{ city }}, {{ location }} {{ current_datetime }}</p>
+
+
 {% if user.is_authenticated %}
     <h1>Welcome to Space</h1>
 {% else %}
