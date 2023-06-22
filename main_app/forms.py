@@ -5,3 +5,8 @@ class ApodForm(ModelForm):
     class Meta:
         model = Apod
         fields = ['title', 'date', 'url']
+
+class SavingForm(ModelForm):
+    class Meta:
+        model = Apod
+        fields = ['title', 'url']

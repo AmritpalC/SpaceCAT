@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Album, Apod, Satellite
-from .forms import ApodForm
+from .forms import ApodForm, SavingForm
 
 import requests
 import environ
@@ -89,19 +89,32 @@ def apod_index(request):
   url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
   response = requests.get(url)
   image_data = response.json()
-  print(image_data)
+  # print(image_data)
+  return render(request, 'apod/index.html', { 'imageData': image_data })
+  
+def apod_save(request):
+  print('HIT APODSAVE')
+  selected_date = request.GET.get('date')
+  print('SELECTEDDATE', selected_date)
+  if not selected_date:
+    return render(request, 'apod/index.html', { 'imageData': None })
 
+  url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+  response = requests.get(url)
+  image_data = response.json()
+  
+  
   if image_data:
     apod = Apod.objects.create(
       title=image_data['title'],
       url=image_data['url'],
       date=selected_date
     )
-    print(apod)
+    
     return render(request, 'apod/index.html', { 'imageData': image_data })
   else:
      return render(request, 'apod/index.html', { 'imageData': None })
-
+  
 
 def albums_index(request):
   albums = Album.objects.all()
@@ -145,3 +158,4 @@ def add_photo(request, album_id):
     new_photo.save()
     return redirect('albums_index, album_id=album_id')
   pass
+
