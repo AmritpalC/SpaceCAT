@@ -39,6 +39,13 @@ html, body {
 }
 .card__container .card {
   width: 200px;
+  border-radius: 30px;
+  background-color: lightgrey;
+}
+
+.card-img-top {
+  height: 180px;
+  border-radius: 30px;
 }
 
 .main-content {
@@ -116,7 +123,7 @@ form {
   border-radius: 30px;
   color: grey;
   font-weight: 600;
-  background-color: #fff;
+  background-color: white;
   border: 1px solid grey;
   margin-top: 1.5em;
   margin-bottom: 1em;
@@ -135,4 +142,21 @@ form {
 
 .card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-pod {
+  transition: all 0.5s ease;
+  width: 70%;
+  border-radius: 30px;
+  color: grey;
+  font-weight: 600;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  margin-top: 1em;
+}
+
+.btn-pod:hover,
+.btn-pod:focus {
+  background-color: red;
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

@@ -14,7 +14,7 @@
                 <div class="card-action">
                     <form action="{% url 'apod_delete' apod.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn">Delete</button>
+                        <button type="submit" class="btn-pod">Delete</button>
                     </form>
                 </div>
             </div>
