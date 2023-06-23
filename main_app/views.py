@@ -90,16 +90,45 @@ def satellites_index(request):
 
 
 # ? APODs
-def apod_index(request):
-  selected_date = request.GET.get('date')
-  if not selected_date:
-    return render(request, 'apod/index.html', { 'imageData': None })
+# def apod_index(request):
+#   selected_date = request.GET.get('date')
+#   if not selected_date:
+#     return render(request, 'apod/index.html', { 'imageData': None })
 
-  url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
-  response = requests.get(url)
-  image_data = response.json()
-  # print(image_data)
-  return render(request, 'apod/index.html', { 'imageData': image_data })
+#   url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+#   response = requests.get(url)
+#   image_data = response.json()
+#   # print(image_data)
+#   return render(request, 'apod/index.html', { 'imageData': image_data })
+
+# @login_required
+# def apod_save(request):
+#   print('HIT APODSAVE')
+#   selected_date = request.GET.get('date')
+#   print('SELECTEDDATE', selected_date)
+#   if not selected_date:
+#     return render(request, 'apod/index.html', { 'imageData': None })
+  
+#   try:
+#     Apod.objects.get(date=selected_date)
+#     print('APOD already saved')
+#     return render(request, 'apod/index.html', { 'imageData': None, 'error': 'Picture already saved'})
+#   except Apod.DoesNotExist:
+#     url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+#     response = requests.get(url)
+#     image_data = response.json()
+#     print(image_data)
+    
+#     if image_data:
+#       Apod.objects.create(
+#         title=image_data['title'],
+#         url=image_data['url'],
+#         date=selected_date,
+#         explanation=image_data['explanation']
+#       )
+#       return render(request, 'apod/index.html', { 'imageData': image_data })
+#     else:
+#       return render(request, 'apod/index.html', { 'imageData': None })
 
 @login_required
 def apod_detail(request, apod_id):
@@ -122,6 +151,23 @@ def apod_delete(request, apod_id):
   apod.delete()
   return redirect('apod_all')
   
+
+# ? Splitting API request from functions
+# ! May revert back to above functions, passing selected_date as a context var in apod_index
+def fetch_apod_data(selected_date):
+  url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+  response = requests.get(url)
+  return response.json()
+
+def apod_index(request):
+  selected_date = request.GET.get('date')
+  print(selected_date)
+  if not selected_date:
+    return render(request, 'apod/index.html', { 'imageData': None })
+  image_data = fetch_apod_data(selected_date)
+  # print(image_data)
+  return render(request, 'apod/index.html', { 'selected_date': selected_date, 'imageData': image_data })
+
 @login_required
 def apod_save(request):
   print('HIT APODSAVE')
@@ -134,11 +180,9 @@ def apod_save(request):
     Apod.objects.get(date=selected_date)
     print('APOD already saved')
     return render(request, 'apod/index.html', { 'imageData': None, 'error': 'Picture already saved'})
+  
   except Apod.DoesNotExist:
-    url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
-    response = requests.get(url)
-    image_data = response.json()
-    print(image_data)
+    image_data = fetch_apod_data(selected_date)
     
     if image_data:
       Apod.objects.create(
@@ -150,6 +194,11 @@ def apod_save(request):
       return render(request, 'apod/index.html', { 'imageData': image_data })
     else:
       return render(request, 'apod/index.html', { 'imageData': None })
+
+
+
+
+
 
 
 # ? Albums
