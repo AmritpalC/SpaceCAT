@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Album, Apod, Satellite
 from .forms import ApodForm, SavingForm
 
-import requests
+import requests, random
 import environ
 
 # New user
@@ -43,7 +43,14 @@ def home(request):
       'location': location,
       'city': city
   }
+  #passing apod to homepage
+  apods = Apod.objects.all()
+  random_apod = random.choice(apods)
+  context['random_apod'] = random_apod
+  
   return render(request, 'home.html', context)
+
+
 # Root URL for APIs
 ROOT_URL = env('ROOT_URL')
 
