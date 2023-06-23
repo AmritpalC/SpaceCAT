@@ -95,6 +95,13 @@ def apod_index(request):
   # print(image_data)
   return render(request, 'apod/index.html', { 'imageData': image_data })
 
+def apod_detail(request, apod_id):
+  apod = Apod.objects.get(id=apod_id)
+  print(apod)
+  return render(request, 'apod/detail.html', {
+    'apod': apod
+  })
+
 def apod_all(request):
   apods = Apod.objects.all()
   return render(request, 'apod/all.html', {
@@ -121,12 +128,14 @@ def apod_save(request):
     url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
     response = requests.get(url)
     image_data = response.json()
+    print(image_data)
     
     if image_data:
       Apod.objects.create(
         title=image_data['title'],
         url=image_data['url'],
-        date=selected_date
+        date=selected_date,
+        explanation=image_data['explanation']
       )
       return render(request, 'apod/index.html', { 'imageData': image_data })
     else:

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Astronomy Picture of the Day details</h1>
+
+<h2>{{ apod.title }}</h2>
+<h4>{{ apod.date }}</h4>
+<hr>
+<img src="{{ apod.url }}">
+<hr>
+<p><strong>Explanation:</strong> {{ apod.explanation }}</p>
+
+{% endblock %}
