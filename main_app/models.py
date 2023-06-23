@@ -18,6 +18,7 @@ class Album(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
     apod_photos = models.ManyToManyField(Apod)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # Link users to album with foreign key -> then migrate
 
@@ -36,7 +37,7 @@ class Album(models.Model):
 
 
 # class Constellation(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 
 class Satellite(models.Model):

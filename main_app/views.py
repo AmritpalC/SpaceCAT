@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 # @login_required above the function
 
 # ? Authorisation for Class-based views - to be added when we have them
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 # importing above, we then add this to the class function like this e.g.
 # class CatCreate(LoginRequiredMixin, CreateView):
 
@@ -90,7 +90,6 @@ def satellites_index(request):
 
 
 # ? APODs
-
 def apod_index(request):
   selected_date = request.GET.get('date')
   if not selected_date:
@@ -102,6 +101,7 @@ def apod_index(request):
   # print(image_data)
   return render(request, 'apod/index.html', { 'imageData': image_data })
 
+@login_required
 def apod_detail(request, apod_id):
   apod = Apod.objects.get(id=apod_id)
   print(apod)
@@ -109,17 +109,20 @@ def apod_detail(request, apod_id):
     'apod': apod
   })
 
+@login_required
 def apod_all(request):
   apods = Apod.objects.all()
   return render(request, 'apod/all.html', {
     'apods': apods
   })
 
+@login_required
 def apod_delete(request, apod_id):
   apod = Apod.objects.get(id=apod_id)
   apod.delete()
   return redirect('apod_all')
   
+@login_required
 def apod_save(request):
   print('HIT APODSAVE')
   selected_date = request.GET.get('date')
@@ -150,13 +153,14 @@ def apod_save(request):
 
 
 # ? Albums
-
+@login_required
 def albums_index(request):
-  albums = Album.objects.all()
+  albums = Album.objects.filter(user=request.user)
   return render(request, 'albums/index.html', {
     'albums': albums
   })
 
+@login_required
 def albums_detail(request, album_id):
   album = Album.objects.get(id=album_id)
   id_list = album.apod_photos.all().values_list('id')
@@ -167,26 +171,35 @@ def albums_detail(request, album_id):
   })
 
 # CBVs for Albums
-class AlbumCreate(CreateView):
+class AlbumCreate(LoginRequiredMixin, CreateView):
   model = Album
   fields = ['name', 'description']
 
-class AlbumUpdate(UpdateView):
+  def form_valid(self, form):
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class AlbumUpdate(LoginRequiredMixin, UpdateView):
   model = Album
   fields = ['name', 'description']
 
-class AlbumDelete(DeleteView):
+class AlbumDelete(LoginRequiredMixin, DeleteView):
   model = Album
   success_url = '/albums'
 
+@login_required
 def add_photo_to_album(request, album_id, apod_id):
   Album.objects.get(id=album_id).apod_photos.add(apod_id)
   return redirect('albums_detail', album_id=album_id)
-                    
+
+@login_required             
 def remove_photo_from_album(request, album_id, apod_id):
   Album.objects.get(id=album_id).apod_photos.remove(apod_id)
   return redirect('albums_detail', album_id=album_id)
 
+#  ? Not using atm?!
+@login_required 
 def add_photo(request, album_id):
   form = ApodForm(request.POST)
   if form.is_valid():
