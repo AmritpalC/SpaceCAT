@@ -11,6 +11,7 @@ urlpatterns = [
 
     path('apod/save', views.apod_save, name='apod_save'),
     path('apod/', views.apod_index, name='apod_index'),
+    path('apod/<int:apod_id>', views.apod_detail, name='apod_detail'),
     path('apod/all', views.apod_all, name='apod_all'),
     path('apod/delete/<int:apod_id>', views.apod_delete, name='apod_delete'),
 

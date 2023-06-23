@@ -4,11 +4,20 @@
 <p>{{ city }}, {{ location }} {{ current_datetime }}</p>
 
 
+
+
 {% if user.is_authenticated %}
-    <h1>Welcome to Space</h1>
+<h1>Welcome to Space</h1>
 {% else %}
-    <p>Log in to access the universe</p>
+<p>Log in to access the universe</p>
 {% endif %}
 
+<img src="{{ random_apod.url }}">
+
+
 {% endblock %}
+
+
+   
+
 

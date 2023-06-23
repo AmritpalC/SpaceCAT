@@ -28,6 +28,7 @@
                                 {% csrf_token %}
                                 <button type="submit" class="btn">Remove</button>
                             </form>
+                            <a class="btn" href="{% url 'apod_detail' apod.id %}">Details</a>
                         </div>
                     </div>
                 </div>
@@ -49,6 +50,7 @@
                                 {% csrf_token %}
                                 <button type="submit" class="btn">Add</button>
                             </form>
+                            <a class="btn" href="{% url 'apod_detail' apod.id %}">Details</a>
                         </div>
                     </div>
                 </div>

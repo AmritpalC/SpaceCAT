@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Album, Apod, Satellite
 from .forms import ApodForm, SavingForm
 
-import requests
+import requests, random
 import environ
 
 # New user
@@ -17,7 +17,7 @@ from django.contrib.auth.decorators import login_required
 # @login_required above the function
 
 # ? Authorisation for Class-based views - to be added when we have them
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 # importing above, we then add this to the class function like this e.g.
 # class CatCreate(LoginRequiredMixin, CreateView):
 
@@ -43,7 +43,14 @@ def home(request):
       'location': location,
       'city': city
   }
+  #passing apod to homepage
+  apods = Apod.objects.all()
+  random_apod = random.choice(apods)
+  context['random_apod'] = random_apod
+  
   return render(request, 'home.html', context)
+
+
 # Root URL for APIs
 ROOT_URL = env('ROOT_URL')
 
@@ -83,29 +90,85 @@ def satellites_index(request):
 
 
 # ? APODs
+# def apod_index(request):
+#   selected_date = request.GET.get('date')
+#   if not selected_date:
+#     return render(request, 'apod/index.html', { 'imageData': None })
 
-def apod_index(request):
-  selected_date = request.GET.get('date')
-  if not selected_date:
-    return render(request, 'apod/index.html', { 'imageData': None })
+#   url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+#   response = requests.get(url)
+#   image_data = response.json()
+#   # print(image_data)
+#   return render(request, 'apod/index.html', { 'imageData': image_data })
 
-  url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
-  response = requests.get(url)
-  image_data = response.json()
-  # print(image_data)
-  return render(request, 'apod/index.html', { 'imageData': image_data })
+# @login_required
+# def apod_save(request):
+#   print('HIT APODSAVE')
+#   selected_date = request.GET.get('date')
+#   print('SELECTEDDATE', selected_date)
+#   if not selected_date:
+#     return render(request, 'apod/index.html', { 'imageData': None })
+  
+#   try:
+#     Apod.objects.get(date=selected_date)
+#     print('APOD already saved')
+#     return render(request, 'apod/index.html', { 'imageData': None, 'error': 'Picture already saved'})
+#   except Apod.DoesNotExist:
+#     url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+#     response = requests.get(url)
+#     image_data = response.json()
+#     print(image_data)
+    
+#     if image_data:
+#       Apod.objects.create(
+#         title=image_data['title'],
+#         url=image_data['url'],
+#         date=selected_date,
+#         explanation=image_data['explanation']
+#       )
+#       return render(request, 'apod/index.html', { 'imageData': image_data })
+#     else:
+#       return render(request, 'apod/index.html', { 'imageData': None })
 
+@login_required
+def apod_detail(request, apod_id):
+  apod = Apod.objects.get(id=apod_id)
+  print(apod)
+  return render(request, 'apod/detail.html', {
+    'apod': apod
+  })
+
+@login_required
 def apod_all(request):
   apods = Apod.objects.all()
   return render(request, 'apod/all.html', {
     'apods': apods
   })
 
+@login_required
 def apod_delete(request, apod_id):
   apod = Apod.objects.get(id=apod_id)
   apod.delete()
   return redirect('apod_all')
   
+
+# ? Splitting API request from functions
+# ! May revert back to above functions, passing selected_date as a context var in apod_index
+def fetch_apod_data(selected_date):
+  url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
+  response = requests.get(url)
+  return response.json()
+
+def apod_index(request):
+  selected_date = request.GET.get('date')
+  print(selected_date)
+  if not selected_date:
+    return render(request, 'apod/index.html', { 'imageData': None })
+  image_data = fetch_apod_data(selected_date)
+  # print(image_data)
+  return render(request, 'apod/index.html', { 'selected_date': selected_date, 'imageData': image_data })
+
+@login_required
 def apod_save(request):
   print('HIT APODSAVE')
   selected_date = request.GET.get('date')
@@ -117,30 +180,36 @@ def apod_save(request):
     Apod.objects.get(date=selected_date)
     print('APOD already saved')
     return render(request, 'apod/index.html', { 'imageData': None, 'error': 'Picture already saved'})
+  
   except Apod.DoesNotExist:
-    url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
-    response = requests.get(url)
-    image_data = response.json()
+    image_data = fetch_apod_data(selected_date)
     
     if image_data:
       Apod.objects.create(
         title=image_data['title'],
         url=image_data['url'],
-        date=selected_date
+        date=selected_date,
+        explanation=image_data['explanation']
       )
       return render(request, 'apod/index.html', { 'imageData': image_data })
     else:
       return render(request, 'apod/index.html', { 'imageData': None })
 
 
-# ? Albums
 
+
+
+
+
+# ? Albums
+@login_required
 def albums_index(request):
-  albums = Album.objects.all()
+  albums = Album.objects.filter(user=request.user)
   return render(request, 'albums/index.html', {
     'albums': albums
   })
 
+@login_required
 def albums_detail(request, album_id):
   album = Album.objects.get(id=album_id)
   id_list = album.apod_photos.all().values_list('id')
@@ -151,26 +220,35 @@ def albums_detail(request, album_id):
   })
 
 # CBVs for Albums
-class AlbumCreate(CreateView):
+class AlbumCreate(LoginRequiredMixin, CreateView):
   model = Album
   fields = ['name', 'description']
 
-class AlbumUpdate(UpdateView):
+  def form_valid(self, form):
+    # Assign the logged in user (self.request.user)
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class AlbumUpdate(LoginRequiredMixin, UpdateView):
   model = Album
   fields = ['name', 'description']
 
-class AlbumDelete(DeleteView):
+class AlbumDelete(LoginRequiredMixin, DeleteView):
   model = Album
   success_url = '/albums'
 
+@login_required
 def add_photo_to_album(request, album_id, apod_id):
   Album.objects.get(id=album_id).apod_photos.add(apod_id)
   return redirect('albums_detail', album_id=album_id)
-                    
+
+@login_required             
 def remove_photo_from_album(request, album_id, apod_id):
   Album.objects.get(id=album_id).apod_photos.remove(apod_id)
   return redirect('albums_detail', album_id=album_id)
 
+#  ? Not using atm?!
+@login_required 
 def add_photo(request, album_id):
   form = ApodForm(request.POST)
   if form.is_valid():

@@ -2,12 +2,12 @@
 {% block content %}
 
 <form action="{% url 'apod_index' %}" method="GET">
-    <input type="date" name="date">
-    <input type="submit" value="Get Picture">
+    <input type="date" name="date" value="{{ selected_date }}">
+    <input class="btn" type="submit" value="Get Picture">
 </form>
 <form action="{% url 'apod_save' %}" method="GET">
-    <input type="date" name="date">
-    <input type="submit" value="Save Picture!">
+    <input type="hidden" name="date" value="{{ selected_date }}">
+    <input class="btn" type="submit" value="💜">
 </form>
 <div>
     {% if imageData %}

@@ -9,6 +9,7 @@ class Apod(models.Model):
     title = models.CharField(max_length=100, default='APOD')      
     url = models.URLField(default='')
     date = models.DateField()
+    explanation = models.TextField(max_length=3000)
     
     class Meta:
         ordering = ['title']
@@ -17,6 +18,9 @@ class Album(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
     apod_photos = models.ManyToManyField(Apod)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # Link users to album with foreign key -> then migrate
 
     def __str__(self):
         return f'{self.name} ({self.id})'
@@ -33,7 +37,7 @@ class Album(models.Model):
 
 
 # class Constellation(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 
 class Satellite(models.Model):
