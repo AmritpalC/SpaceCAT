@@ -13,17 +13,17 @@
 						<h2>Sign Up</h2>
 					</div>
 					<div class="row">
-                    <p class="red-text text-danger">{{ error_message }}</p>
-						<form control="" class="form-group" method="POST" action="{% url 'signup' %}">
+                    	<p class="red-text text-danger">{{ error_message }}</p>
+						<form class="form-group" method="POST" action="{% url 'signup' %}">
                                 {% csrf_token %}
 							<div class="row">
-								<input type="text" name="username" id="username" class="form__input" placeholder="Username">
+								<input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="form__input" placeholder="username">
 							</div>
 							<div class="row">
-								<input type="password" name="password" id="password" class="form__input" placeholder="Password">
+								<input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" class="form__input" placeholder="password">
 							</div>
 							<div class="row">
-								<input type="password" name="password-confirmation" id="password-confirmation" class="form__input" placeholder="Confirm Password">
+								<input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="form__input" placeholder="confirm password">
 							</div>			
 							<div class="row">
 								<input type="submit" value="Sign Up" class="btn">

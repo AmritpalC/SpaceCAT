@@ -5,9 +5,9 @@
 
     <h4>Are you sure you want to delete <span class="purple-text text-darken-3">{{ object.name }}</span>?</h4>
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Yes - Delete!" class="btn">
-        <a href="{% url 'albums_detail' album.id %}">Cancel</a>
+  <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Yes - Delete!" class="btn">
+      <a class="btn" href="{% url 'albums_detail' album.id %}">Cancel</a>
   </form>
 {% endblock %}

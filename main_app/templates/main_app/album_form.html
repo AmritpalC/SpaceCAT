@@ -9,9 +9,15 @@
 
 <form action="" method="POST">
     {% csrf_token %}
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Name</label>
+        <input class ="form-control" type="text" name="name" maxlength="100" required="" id="id_name">
+    </div>
+    <div class="form-group">
+       <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class ="form-control" name="description" required="" id="id_description"></textarea>
     <table>
-        {{ form.as_table }}
-    </table>
+    </div>  
     <input type="submit" value="Add to Space!" class="btn">
 </form>
 {% endblock %}
