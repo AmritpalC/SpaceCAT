@@ -12,11 +12,6 @@
 				<div class="row">
 					<h2>Sign Up</h2>
 				</div>
-				<div class="row">
-					<p class="red-text text-danger">{{ error_message }}</p>
-					<div class="row">
-						<input type="text" name="username" id="username" class="form__input" placeholder="Username">
-					</div>
 					<div class="row">
                     	<p class="red-text text-danger">{{ error_message }}</p>
 						<form class="form-group" method="POST" action="{% url 'signup' %}">
