@@ -6,6 +6,7 @@
 
 html, body {
   height: 100%;
+  background-color: rgb(22, 26, 31);
 }
 
 .selector-for-some-widget {
@@ -62,7 +63,7 @@ html, body {
 }
 
 .company__info {
-  background-color: lightgrey;
+  background-color: rgb(12, 0, 46);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   display: flex;
@@ -71,13 +72,19 @@ html, body {
   color: #fff;
 }
 
-.fa-android {
-  font-size: 3em;
-}
-
 .cat-logo {
   height: 50px;
   width: 50px;
+  margin-left: 20px;
+}
+
+.cat-login {
+  height: 120px;
+  width: 120px;
+}
+
+.navbar-custom {
+  background-color: rgb(12, 0, 46);
 }
 
 /* @media screen and (max-width: 640px) {
@@ -94,15 +101,15 @@ html, body {
 	.main-content{width: 70%;}
 } */
 .row > h2 {
-  color: grey;
+  color: rgb(12, 0, 46);
 }
 
 .login_form {
-  background-color: #fff;
+  background-color: rgb(26, 70, 180);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  border-top: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-top: 1px solid rgb(255, 125, 72);
+  border-right: 1px solid rgb(255, 125, 72);
 }
 
 form {
@@ -112,29 +119,29 @@ form {
 .form__input {
   width: 100%;
   border: 0px solid transparent;
-  border-radius: 0;
+  border-radius: 4px;
   border-bottom: 1px solid #aaa;
   padding: 1em 0.5em 0.5em;
   padding-left: 2em;
   outline: none;
-  margin: 1.5em auto;
+  margin: 1em auto;
   transition: all 0.5s ease;
 }
 
 .form__input:focus {
   border-bottom-color: grey;
   box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .btn {
   transition: all 0.5s ease;
-  width: 70%;
+  width: 100%;
   border-radius: 30px;
-  color: grey;
+  color: rgb(255, 125, 72);
   font-weight: 600;
-  background-color: white;
-  border: 1px solid grey;
+  background-color: rgb(12, 0, 46);
+  border: 1px solid rgb(255, 125, 72);
   margin-top: 1.5em;
   margin-bottom: 1em;
 }
