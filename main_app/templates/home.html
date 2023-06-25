@@ -3,16 +3,26 @@
 
 <p>{{ city }}, {{ location }} {{ current_datetime }}</p>
 
-
-
-
 {% if user.is_authenticated %}
-<h1>Welcome to Space</h1>
+
 {% else %}
 <p>Log in to access the universe</p>
 {% endif %}
 
-<img src="{{ random_apod.url }}">
+
+<div class="card" style="width: 40rem;"> 
+    <h1>🪐 Welcome to Space 🪐</h1>
+    <a href="{% url 'apod_detail' random_apod.id %}">  
+    <img src="{{ random_apod.url }}" style="width: 40rem; height: 40rem; border-radius: 1px;"></a>
+    <div class="card-body">
+      <p class="card-text">{{ random_apod.title }}</p>
+      <p class="card-text">{{ random_apod.date }}</p>
+    </div>
+  </div>
+
+<!-- <img src="{{ random_apod.url }}"> -->
+    
+
 
 {% endblock %}
 
