@@ -5,7 +5,7 @@
 
 
     <div class="card__container">
-{% for apod in apods %}
+{% for apod in request.user.apods.all %}
         <div class="card">
             <img src="{{ apod.url }}" class="card-img-top">
             <div class="card-body">

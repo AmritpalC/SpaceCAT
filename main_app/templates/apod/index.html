@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div>
+    <p>Explore space to find pictures. If you find one you like, you can save the photo!</p>
+</div>
+
 <form action="{% url 'apod_index' %}" method="GET">
     <input type="date" name="date" value="{{ selected_date }}">
     <input class="btn" type="submit" value="Get Picture">
 </form>
 <form action="{% url 'apod_save' %}" method="GET">
     <input type="hidden" name="date" value="{{ selected_date }}">
-    <input class="btn" type="submit" value="💜">
+    <input class="btn" type="submit" value="Save photo! &nbsp;🐈💜">
 </form>
+<div>
+    {% if message %}
+        <h4>{{ message }}</h4>
+    {% endif %}
+</div>
 <div>
     {% if imageData %}
         <h1> {{ imageData.title }}</h1>
@@ -17,11 +26,6 @@
         <img src="{{ imageData.url }}">
     {% else %}
         <h4>No image selected or found, please try again</h4>
-    {% endif %}
-</div>
-<div>
-    {% if error %}
-        <h4>{{ error }}</h4>
     {% endif %}
 </div>
 {% endblock %}
