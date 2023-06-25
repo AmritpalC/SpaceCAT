@@ -4,15 +4,21 @@ from datetime import date
 
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Apod(models.Model):
     title = models.CharField(max_length=100, default='APOD')      
     url = models.URLField(default='')
     date = models.DateField()
     explanation = models.TextField(max_length=3000)
+    users = models.ManyToManyField(User, related_name='apods')
     
+    def __str__(self):
+        return self.title
+
     class Meta:
         ordering = ['title']
+
 
 class Album(models.Model):
     name = models.CharField(max_length=100)
@@ -32,12 +38,7 @@ class Album(models.Model):
         ordering = ['name']
 
 
-    
-# album = models.ForeignKey(Album, on_delete=models.CASCADE)
-
-
 # class Constellation(models.Model):
-
 
 
 class Satellite(models.Model):

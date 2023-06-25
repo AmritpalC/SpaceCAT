@@ -148,7 +148,10 @@ def apod_all(request):
 @login_required
 def apod_delete(request, apod_id):
   apod = Apod.objects.get(id=apod_id)
-  apod.delete()
+  if apod.users.count() > 1:
+    apod.users.remove(request.user)
+  else:
+    apod.delete()
   return redirect('apod_all')
   
 
@@ -170,28 +173,33 @@ def apod_index(request):
 
 @login_required
 def apod_save(request):
-  print('HIT APODSAVE')
+  # print('HIT APODSAVE')
   selected_date = request.GET.get('date')
-  print('SELECTEDDATE', selected_date)
+  # print('SELECTEDDATE =', selected_date)
   if not selected_date:
     return render(request, 'apod/index.html', { 'imageData': None })
-  
+
   try:
-    Apod.objects.get(date=selected_date)
-    print('APOD already saved')
-    return render(request, 'apod/index.html', { 'imageData': None, 'error': 'Picture already saved'})
-  
+    apod = Apod.objects.get(date=selected_date)
+    if request.user in apod.users.all():
+      print('APOD already saved by user')
+      return render(request, 'apod/index.html', { 'imageData': None, 'message': 'Picture already saved' })
+    else:
+      apod.users.add(request.user)
+      return render(request, 'apod/index.html', { 'message': 'Picture added to your photos!' })
+
   except Apod.DoesNotExist:
     image_data = fetch_apod_data(selected_date)
     
     if image_data:
-      Apod.objects.create(
+      apod = Apod.objects.create(
         title=image_data['title'],
         url=image_data['url'],
         date=selected_date,
         explanation=image_data['explanation']
       )
-      return render(request, 'apod/index.html', { 'imageData': image_data })
+      apod.users.add(request.user)
+      return render(request, 'apod/index.html', { 'imageData': image_data, 'message': 'Picture added to your photos!' })
     else:
       return render(request, 'apod/index.html', { 'imageData': None })
 
