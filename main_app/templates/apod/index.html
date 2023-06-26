@@ -22,17 +22,20 @@
     <hr>
     <div id="img-date-btn">
         <h1> {{ imageData.date }}</h1>
-        <span>
-            <form action="{% url 'apod_save' %}" method="GET">
-                <input type="hidden" name="date" value="{{ selected_date }}">
-                <input class="btn-savephoto" type="submit" value=" Save Photo 💜 ">
-            </form>
-        </span>
-        <hr>
-        <p> {{ imageData.explanation }}</p>
-        <hr>
-        <img src="{{ imageData.url }}">
-        <hr>
+        <div class="">
+            <span>
+                <form action="{% url 'apod_save' %}" method="GET">
+                    <input type="hidden" name="date" value="{{ selected_date }}">
+                    <input class="btn-savephoto" type="submit" value="  Save Photo 💜  ">
+                </form>
+            </span>
+        </div>
+    </div>
+    <hr>
+    <p> {{ imageData.explanation }}</p>
+    <hr>
+    <img src="{{ imageData.url }}">
+    <hr>
     {% else %}
     <h4>No image currently selected.</h4>
     {% endif %}

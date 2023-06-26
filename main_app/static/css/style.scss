@@ -25,6 +25,35 @@ h3 {
 		overflow: auto;
 		padding-bottom: 20px;
 
+		.card-album {
+			width: 380px; 
+			height: 100px; 
+			margin: 10px auto;
+			background-color: grey;
+			border-radius: 30px;
+			border: 2px solid rgb(255, 125, 72);
+			&:hover {
+				background-color: darkgrey;
+				color: white;
+			}
+			&:focus {
+				background-color: darkgrey;
+				color: white;
+			}
+			.album {
+				text-align: center;
+				line-height: 100px;
+				a {
+					text-decoration: none;
+					display: block;
+					color: rgb(26, 70, 180);
+					&:hover {
+						color: #ffffff;
+					}
+				}
+			}
+		}
+
 		.row {
 			.col {
 				.photos {
@@ -47,6 +76,8 @@ h3 {
 		}
 	}
 }
+
+  
 
 .footer {
 	height: 50px;
@@ -295,4 +326,4 @@ form {
 	padding-top: 15px;
   }
   
-
+ 

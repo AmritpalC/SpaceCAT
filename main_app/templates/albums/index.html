@@ -4,9 +4,12 @@
 <h1>All Albums</h1>
 
 {% for album in albums %}
-    <a href="{% url 'albums_detail' album.id %}">
-        <div class="card">
-            <div class="album">{{ album.name }}</div>      
+        <div class="card-album">
+            <div class="album">
+            
+    <a href="{% url 'albums_detail' album.id %}">{{ album.name }}
+    </a>
+    </div>      
         </div>
     </a>
 {% endfor %}
