@@ -2,32 +2,27 @@
 {% block content %}
 
 <div class="d-flex flex-row-reverse">
-<p class="p-2 mt-2">{{ city }}, {{ location }} {{ current_datetime }}</p>
+<p class="p-2 mt-2">{{ city }}, {{ location }}, {{ current_datetime }}</p>
 </div>
 
 {% if user.is_authenticated %}
-<h1 class="mt-3">☄️ Welcome to Space {{ user.username }} 🪐</h1>
+<h1 class="mt-3">☄️ Welcome to Space {{ user.username|title }} 🪐</h1>
 {% else %}
-<h2>Log In or Sign Up to access the Universe 🚀</h2>
+<h2><a class="href-log-sign" href="{% url 'login' %}">Log In</a> or <a class="href-log-sign" href="{% url 'signup' %}">Sign Up</a> to access the Universe 🚀</h2>
 {% endif %}
 
 <!-- ? 100% width and changed style so it's a fluid and responsive image -->
-<div class="card w-100 p-3 bg-dark text-white border-light mb-3 mt-4"> 
-    <h2 class="card-title">{{ random_apod.title }}</h2>
-    <a href="{% url 'apod_detail' random_apod.id %}">  
+<div class="card w-100 p-3 bg-dark text-white border-light mb-3 mt-4">
+  <h2 class="card-title">{{ random_apod.title }}</h2>
+  <a href="{% url 'apod_detail' random_apod.id %}">
     <img src="{{ random_apod.url }}" class="img-fluid" alt="Responsive image"></a>
-    <div class="card-body">
-      <h3 class="card-text">{{ random_apod.date }}</h3>
-    </div>
+  <div class="card-body">
+    <h3 class="card-text">{{ random_apod.date }}</h3>
   </div>
+</div>
 
 <!-- <img src="{{ random_apod.url }}"> -->
-    
+
 
 
 {% endblock %}
-
-
-   
-
-

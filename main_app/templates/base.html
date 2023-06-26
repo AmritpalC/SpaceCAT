@@ -20,7 +20,10 @@
   <div id="wrap">
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <a class="navbar-brand" href="{% url 'home' %}">
-      <img src="{% static 'css/media/spacecat.png' %}" class="cat-logo"/>&nbsp;<span class="app-title">SpaceCAT</span>
+      <div class="logo-app-name">
+        <img src="{% static 'css/media/spacecat.png' %}" class="cat-logo"/>
+        <span class="app-title">&nbsp;SpaceCAT</span>
+      </div>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
