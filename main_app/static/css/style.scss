@@ -1,13 +1,18 @@
 * {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
 	height: 100%;
 	background-color: rgb(30, 31, 39);
 	color: white;
+}
+
+h3 {
+	height: 60px;
 }
 
 .selector-for-some-widget {
@@ -16,6 +21,31 @@ html, body {
 
 #wrap {
 	min-height: 90%;
+	.container {
+		overflow: auto;
+		padding-bottom: 20px;
+
+		.row {
+			.col {
+				.photos {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					gap: 10px;
+					.card {
+						border-color: rgb(255, 125, 72);
+						background-color: darkgrey;
+						width: 250px;
+						.card-body {
+							.card-title {
+								height: 66px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 .footer {
@@ -23,31 +53,42 @@ html, body {
 	clear: both;
 	padding-top: 20px;
 	margin: 0 20px;
+
 	h2 {
 		font-size: 12px;
 	}
 }
 
-.container {
-	overflow: auto;
-	padding-bottom: 20px;
-}
 
 .card__container {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
 	gap: 15px;
+
 	.card {
 		width: 200px;
 		border-radius: 30px;
-		background-color: lightgrey;
+		background-color: rgb(26, 70, 180);
+		border-color: rgb(255, 125, 72);
+	}
+	
+	.card-title {
+		color: rgb(255, 125, 72);
+	}
+
+	.card-text {
+		color: rgb(198, 60, 226);
 	}
 }
 
 .card-img-top {
 	height: 180px;
 	border-radius: 30px;
+	border: 1px solid rgb(255, 125, 72);
+}
+
+.card-title {
+	height: 48px;
 }
 
 .card {
@@ -109,8 +150,8 @@ html, body {
 	background-color: rgb(26, 70, 180);
 	border-top-right-radius: 20px;
 	border-bottom-right-radius: 20px;
-	border-top: 1px solid  rgb(255, 125, 72);
-	border-right: 1px solid  rgb(255, 125, 72);
+	border-top: 1px solid rgb(255, 125, 72);
+	border-right: 1px solid rgb(255, 125, 72);
 }
 
 form {
@@ -120,7 +161,7 @@ form {
 .form__input {
 	width: 100%;
 	border: 0px solid transparent;
-	border-radius: 4px;
+	border-radius: 10px;
 	border-bottom: 1px solid #aaa;
 	padding: 1em .5em .5em;
 	padding-left: 2em;
@@ -132,10 +173,17 @@ form {
 .form__input:focus {
 	border-bottom-color: grey;
 	box-shadow: 0 0 5px rgba(0, 80, 80, .4);
-	border-radius: 8px;
+	border: 1px solid rgb(255, 125, 72);
+	border-radius: 15px;
 }
 
-.btn {
+.btn,
+.btn-pod,
+.btn-pod-details,
+.btn-add,
+.btn-remove,
+.btn-details-album,
+.btn-savephoto {
 	transition: all .5s ease;
 	width: 100%;
 	border-radius: 30px;
@@ -146,11 +194,42 @@ form {
 	margin-top: 1.5em;
 	margin-bottom: 1em;
 }
+.btn-pod-details,
+.btn-details-album {
+	width: 80%;
+}
 
 .btn:hover,
-.btn:focus {
+.btn:focus,
+.btn-savephoto:hover,
+.btn-savephoto:focus {
 	background-color: grey;
 	color: #fff;
+}
+
+.btn-savephoto {
+	height: 38px;
+	
+}
+
+.btn-pod-details:hover, 
+.btn-pod-details:focus {
+	background-color: rgb(198, 60, 226);
+	color: white;
+}
+
+.btn-pod:hover,
+.btn-pod:focus,
+.btn-remove:hover, 
+.btn-remove:focus {
+	background-color: red;
+	color: white;
+}
+
+.btn-add:hover,
+.btn-add:focus {
+	background-color: green;
+	color: white;
 }
 
 .card {
@@ -162,20 +241,34 @@ form {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.btn-pod {
-	transition: all .5s ease;
-	width: 70%;
-	border-radius: 30px;
-	color: grey;
-	font-weight: 600;
-	background-color: lightgrey;
-	border: 1px solid grey;
-	margin-top: 1em;
-}
-
-.btn-pod:hover,
-.btn-pod:focus {
-	background-color: red;
-	color: #fff;
-}
+#date-style {
+	display: flex;
+	background-color: rgb(255, 125, 72);
+	border: 1px solid rgb(255, 125, 72);
+	border-radius: 10px; 
+	padding: 5px; 
+	margin-right: 10px;
+	margin-top: 8px;
+  }
+  
+  #apod-idx-save {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  
+  #get-apod-form,
+  #apod-save-form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 5px; 
+  }
+  
+  #apod-save-pic {
+	display: flex;
+	justify-content: center;
+  }
+  
 

@@ -10,11 +10,11 @@
 <form action="" method="POST">
     {% csrf_token %}
     <div class="form-group">
-        <label for="exampleFormControlInput1">Name</label>
+        <label class="name" for="exampleFormControlInput1">Name</label>
         <input class ="form-control" type="text" name="name" maxlength="100" required="" id="id_name">
     </div>
     <div class="form-group">
-       <label for="exampleFormControlTextarea1">Description</label>
+       <label class="description" for="exampleFormControlTextarea1">Description</label>
         <textarea class ="form-control" name="description" required="" id="id_description"></textarea>
     <table>
     </div>  

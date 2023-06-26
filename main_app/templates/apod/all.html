@@ -12,7 +12,9 @@
                 <div class="card-title">{{ apod.title }}</div>
                 <div class="card-text">{{ apod.date }}</div>
                 <div class="card-action">
-                    <a class="btn-pod" href="{% url 'apod_detail' apod.id %}">Details</a>
+                    <a href="{% url 'apod_detail' apod.id %}">
+                        <button  class="btn-pod-details">Details</button>
+                    </a>
                     <form action="{% url 'apod_delete' apod.id %}" method="POST">
                         {% csrf_token %}
                         <button type="submit" class="btn-pod">Delete</button>
