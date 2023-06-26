@@ -1,31 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div>
-    <p>Explore space to find pictures. If you find one you like, you can save the photo!</p>
+<div class="mt-5">
+    <p>Explore NASA's Picture's of the Day. If you find one you like, you can save the photo!</p>
 </div>
 
-<form action="{% url 'apod_index' %}" method="GET">
-    <input type="date" name="date" value="{{ selected_date }}">
-    <input class="btn" type="submit" value="Get Picture">
-</form>
-<form action="{% url 'apod_save' %}" method="GET">
-    <input type="hidden" name="date" value="{{ selected_date }}">
-    <input class="btn" type="submit" value="Save photo! &nbsp;🐈💜">
-</form>
+<div id="apod-idx-save">
+        <form id="get-apod-form" action="{% url 'apod_index' %}" method="GET">
+           <div><input id="date-style" type="date" name="date" value="{{ selected_date }}"></div>
+            <input class="btn" type="submit" value="Get Picture">
+        </form>
+    <form action="{% url 'apod_save' %}" method="GET">
+        <input type="hidden" name="date" value="{{ selected_date }}">
+        <input id="apod-save-pic" class="btn" type="submit" value="Save Photo &nbsp;🐈💜">
+    </form>
+</div>
 <div>
     {% if message %}
         <h4>{{ message }}</h4>
     {% endif %}
 </div>
-<div>
+<div class="mt-4">
     {% if imageData %}
         <h1> {{ imageData.title }}</h1>
+        <hr>
         <h1> {{ imageData.date }}</h1>
+        <hr>
         <p> {{ imageData.explanation }}</p>
+        <hr>
         <img src="{{ imageData.url }}">
+        <hr>
     {% else %}
-        <h4>No image selected or found, please try again</h4>
+        <h4>No image currently selected.</h4>
     {% endif %}
 </div>
+
+
 {% endblock %}
