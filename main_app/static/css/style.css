@@ -8,9 +8,6 @@ html,
 body {
   height: 100%;
   background-color: rgb(22, 26, 31);
-}
-
-h1, h2, h3, h4, p, .name, .description {
   color: white;
 }
 
@@ -135,7 +132,6 @@ h3 {
 } */
 .row > h2 {
   color: rgb(255, 125, 72);
-  margin-top: 7px;
 }
 
 .login_form {
