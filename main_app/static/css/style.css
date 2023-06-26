@@ -196,11 +196,11 @@ form {
   margin-right: 10px;
 }
 
-/* #apod-idx-save {
+#apod-idx-save {
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 
 #get-apod-form,
@@ -211,6 +211,11 @@ form {
   margin: 0 5px; 
 }
 
-/* #apod-save-pic {
+#apod-save-pic {
   display: flex;
-} */
+  justify-content: center;
+}
+
+#apod-save-pic.btn {
+  margin-left: 10;
+}
