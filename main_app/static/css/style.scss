@@ -11,6 +11,11 @@ body {
 	color: white;
 }
 
+h1 {
+	text-align: center;
+	margin-top: 20px;
+}
+
 h3 {
 	height: 60px;
 }
@@ -54,6 +59,42 @@ h3 {
 			}
 		}
 
+			.card-content {
+				display: flex;
+				justify-content: space-between;
+				@media only screen and (max-width: 600px) {
+					flex-direction: column;
+				}
+					
+				.card-title__container {
+					text-align: left;
+					color: #ffffff;
+					border: none;
+					h2 {
+						font-size: 35px;
+						line-height: 40px;
+						margin-top: 20px;
+					}
+					p {
+						margin: 0;
+						font-size: 15px;
+						line-height: 20px;
+					}
+				}
+				.card-action {
+					display: flex;
+					@media only screen and (max-width: 600px) {
+						flex-direction: column;
+					}
+					.btn {
+						margin-left: 10px;
+						margin-right: 10px;
+						width: 200px;
+					}
+				}
+			}
+		
+
 		.row {
 			.col {
 				.photos {
@@ -61,6 +102,9 @@ h3 {
 					flex-direction: row;
 					flex-wrap: wrap;
 					gap: 10px;
+					@media only screen and (max-width: 600px) {
+						justify-content: center;
+					}
 					.card {
 						border-color: rgb(255, 125, 72);
 						background-color: darkgrey;
@@ -231,14 +275,19 @@ form {
 .btn-details-album,
 .btn-savephoto {
 	transition: all .5s ease;
-	width: 100%;
+	width: auto;
 	border-radius: 30px;
 	color: rgb(255, 125, 72);
 	font-weight: 600;
 	background-color: rgb(12, 0, 46);
 	border: 1px solid rgb(255, 125, 72);
 	margin-top: 1.5em;
-	margin-bottom: 1em;
+	margin-bottom: 1em;   
+	width: 100%;
+    max-width: 150px;
+    height: 50px;
+    font-size: 15px;
+    line-height: 35px;
 }
 
 .btn-pod-details,
@@ -332,4 +381,13 @@ form {
   
   .href-log-sign {
 	text-decoration: none;
+  }
+
+  form {
+	max-width: 600px;
+	width: 100%;
+	margin: 0 auto;
+	.form-control {
+		margin-bottom: 15px;
+	}
   }
