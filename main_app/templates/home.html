@@ -2,11 +2,11 @@
 {% block content %}
 
 <div class="d-flex flex-row-reverse">
-<p class="p-2 mt-2">{{ city }}, {{ location }} {{ current_datetime }}</p>
+<p class="p-2 mt-2">{{ city }}, {{ location }}, {{ current_datetime }}</p>
 </div>
 
 {% if user.is_authenticated %}
-<h1 class="mt-3">☄️ Welcome to Space {{ user.username }} 🪐</h1>
+<h1 class="mt-3">☄️ Welcome to Space {{ user.username|title }} 🪐</h1>
 {% else %}
 <h2>Log In or Sign Up to access the Universe 🚀</h2>
 {% endif %}
