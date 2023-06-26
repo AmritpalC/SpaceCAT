@@ -4,9 +4,14 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   background-color: rgb(22, 26, 31);
+}
+
+h1, h2, h3, h4, p, .name, .description {
+  color: white;
 }
 
 .selector-for-some-widget {
@@ -15,6 +20,19 @@ html, body {
 
 #wrap {
   min-height: 90%;
+}
+#wrap .container {
+  overflow: auto;
+  padding-bottom: 20px;
+}
+#wrap .container .row .col .photos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#wrap .container .row .col .photos .card {
+  width: 250px;
 }
 
 .footer {
@@ -27,26 +45,32 @@ html, body {
   font-size: 12px;
 }
 
-.container {
-  overflow: auto;
-  padding-bottom: 20px;
-}
-
 .card__container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 15px;
 }
 .card__container .card {
   width: 200px;
   border-radius: 30px;
-  background-color: lightgrey;
+  background-color: rgb(26, 70, 180);
+  border-color: rgb(255, 125, 72);
+}
+.card__container .card-title {
+  color: rgb(255, 125, 72);
+}
+.card__container .card-text {
+  color: rgb(198, 60, 226);
 }
 
 .card-img-top {
   height: 180px;
   border-radius: 30px;
+  border: 1px solid rgb(255, 125, 72);
+}
+
+.card-title {
+  height: 48px;
 }
 
 .card {
@@ -101,7 +125,8 @@ html, body {
 	.main-content{width: 70%;}
 } */
 .row > h2 {
-  color: rgb(12, 0, 46);
+  color: rgb(255, 125, 72);
+  margin-top: 7px;
 }
 
 .login_form {
@@ -134,7 +159,9 @@ form {
   border-radius: 8px;
 }
 
-.btn {
+.btn,
+.btn-pod,
+.btn-pod-details {
   transition: all 0.5s ease;
   width: 100%;
   border-radius: 30px;
@@ -146,10 +173,26 @@ form {
   margin-bottom: 1em;
 }
 
+.btn-pod-details {
+  width: 80%;
+}
+
 .btn:hover,
 .btn:focus {
   background-color: grey;
   color: #fff;
+}
+
+.btn-pod-details:hover,
+.btn-pod-details:focus {
+  background-color: rgb(198, 60, 226);
+  color: white;
+}
+
+.btn-pod:hover,
+.btn-pod:focus {
+  background-color: red;
+  color: white;
 }
 
 .card {
@@ -159,21 +202,4 @@ form {
 
 .card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.btn-pod {
-  transition: all 0.5s ease;
-  width: 70%;
-  border-radius: 30px;
-  color: grey;
-  font-weight: 600;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  margin-top: 1em;
-}
-
-.btn-pod:hover,
-.btn-pod:focus {
-  background-color: red;
-  color: #fff;
 }/*# sourceMappingURL=style.css.map */

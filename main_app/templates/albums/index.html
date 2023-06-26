@@ -6,9 +6,7 @@
 {% for album in albums %}
     <a href="{% url 'albums_detail' album.id %}">
         <div class="card">
-            <div class="card-content">
-                <span class="list-group-item list-group-item-secondary">{{ album.name }}</span>
-            </div>
+            <div class="album">{{ album.name }}</div>      
         </div>
     </a>
 {% endfor %}

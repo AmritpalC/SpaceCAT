@@ -19,9 +19,10 @@
 <div class="row">
   <div class="col s6">
     <h3>{{ album.name }}'s Photos</h3>
+    <div class="photos">
     {% if album.apod_photos.count %}
       {% for apod in album.apod_photos.all %}
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <img src="{{ apod.url }}" class="card-img-top" data-bs-toggle="modal" data-bs-target="#exampleModal{{ apod.id }}">
           <div class="card-body">
             <span class="card-title">{{ apod.title }}</span>
@@ -54,13 +55,15 @@
     {% else %}
       <h5>No Photos 🚀</h5>
     {% endif %}
+    </div>
   </div>
 
   <div class="col s6">
     <h3>Available Photos</h3>
+    <div class="photos">
     {% if apod_photos.count %}
       {% for apod in apod_photos.all %}
-        <div class="card" style="width: 18rem;">
+        <div class="card">
           <img src="{{ apod.url }}" class="card-img-top" data-bs-toggle="modal" data-bs-target="#exampleModal{{ apod.id }}">
           <div class="card-body">
             <span class="card-title">{{ apod.title }}</span>
@@ -93,6 +96,7 @@
     {% else %}
       <h5>{{ album.name }} Already Has All Photos Available</h5>
     {% endif %}
+    </div>
   </div>
 </div>
 {% endblock %}
