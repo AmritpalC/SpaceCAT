@@ -200,8 +200,7 @@ form {
 .btn-details-album,
 .btn-savephoto {
 	transition: all .5s ease;
-	width: auto;
-	padding: 0.5rem 1.5rem;
+	width: 100%;
 	border-radius: 30px;
 	color: rgb(255, 125, 72);
 	font-weight: 600;
@@ -227,8 +226,6 @@ form {
 
 .btn-savephoto {
 	height: 42px;
-	margin: auto;
-	display: block;
 }
 
 .btn-pod-details:hover, 
@@ -266,7 +263,7 @@ form {
 	border: 1px solid rgb(255, 125, 72);
 	border-radius: 10px; 
 	padding: 5px; 
-	margin-right: 18px;
+	margin-right: 10px;
 	margin-top: 8px;
   }
   
