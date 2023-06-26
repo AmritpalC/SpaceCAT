@@ -1,14 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<h1>About SpaceCAT</h1>
-
-<p>SpaceCAT is an application which allows users to view NASA's Astronomy Picture of the Day (APOD)!</p>
-
-<p>You can save your favourites photos and add them to albums!</p>
-
-<p>SpaceCAT has been built by 3 aspiring software engineers: Costa, Amrit and Trung!</p>
-
-<p>This is why the app is called SpaceCAT!! 🪐 😺</p>
+<div class="container-fluid mt-4">
+    <div class="row align-items-center">
+        <div class="col-8">
+            <h1>About SpaceCAT</h1>
+            <p>SpaceCAT is an application which allows users to view NASA's Astronomy Picture of the Day (APOD)!</p>
+            <p>Go to the 'Search APOD' link within the 'APOD' dropdown and simply enter a date to find photos.</p>
+            <p>You can save your favourites photos and add them to albums. You can save as many pictures as you want and add them to as many albums as you would like too. Go have fun exploring space!</p>
+        </div>
+        <div class="col-4 w-25">
+            <img src="{% static 'css/media/spacecat.png' %}" class="img-fluid" alt="Responsive image">
+        </div>
+    </div>
+</div>
+</br>
+<hr>
+</br>
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-4 w-25">
+            <img src="{% static 'css/media/Astronaut.png' %}" class="img-fluid rounded" alt="Responsive image">
+        </div>
+        <div class="col-8">
+            <h1>About Us</h1>
+            <p>SpaceCAT has been built by 3 aspiring software engineers: Costa, Amrit and Trung!</p>
+            <p>We wanted to create this app so that we can learn more about space and see what is really out there!</p>
+            <p>Fun fact: the initials of our first names (C, A, T) led to the name SpaceCAT!! 🪐 😺</p>
+            <p>Here are some links if you like to know more about the three of us:</p>
+        </div>
+    </div>
+</div>
+</br>
+<hr>
+</br>
+<div class="container-fluid">
+    <div class="row align-items-start text-center">
+        <div class="col">
+            <h4>Costa</h4>
+            <hr>
+            <img src="{% static 'css/media/Costa.png' %}">
+            <div class=col>
+                <a href="https://github.com/costapapa" class="btn">GitHub</a>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Amrit</h4>
+            <hr>
+            <img src="{% static 'css/media/Amrit.png' %}">
+            <div class=col>
+                <a href="https://github.com/AmritpalC" class="btn">GitHub</a>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Trung</h4>
+            <hr>
+            <img src="{% static 'css/media/Trung.png' %}">
+            <div class="col">
+                <a href="https://github.com/Puzzles65" class="btn">GitHub</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

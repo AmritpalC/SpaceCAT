@@ -6,7 +6,9 @@
 
 html, body {
   height: 100%;
-  background-color: rgb(22, 26, 31);
+  /* background-color: rgb(22, 26, 31); */
+  /* 36, 38, 47 */
+  background-color: rgb(30, 31, 39);
   /* ! added */
   color: white;
 }
@@ -121,7 +123,7 @@ form {
 .form__input {
   width: 100%;
   border: 0px solid transparent;
-  /* ! increased */
+  /* ! border radius increased */
   border-radius: 10px;
   border-bottom: 1px solid #aaa;
   padding: 1em 0.5em 0.5em;
@@ -134,14 +136,16 @@ form {
 .form__input:focus {
   border-bottom-color: grey;
   box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
-  /* ! increased & colour added */
+  /* ! radius increased & border with colour added */
   border: 1px solid rgb(255, 125, 72);
   border-radius: 15px;
 }
 
 .btn {
   transition: all 0.5s ease;
-  width: 100%;
+  /* ! changed from 100% width to auto & added padding */
+  width: auto;
+  padding: 0.5em 2em;
   border-radius: 30px;
   color: rgb(255, 125, 72);
   font-weight: 600;
