@@ -28,7 +28,7 @@ html, body {
   margin: 0 20px;
 }
 .footer h2 {
-  font-size: 12px;
+  font-size: 1.2rem;
 }
 
 .container {
@@ -144,7 +144,7 @@ form {
 .btn {
   transition: all 0.5s ease;
   /* ! changed from 100% width to auto & added padding */
-  width: auto;
+  width: 100%;
   padding: 0.5em 2em;
   border-radius: 30px;
   color: rgb(255, 125, 72);
