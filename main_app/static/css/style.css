@@ -7,7 +7,7 @@
 html,
 body {
   height: 100%;
-  background-color: rgb(22, 26, 31);
+  background-color: rgb(30, 31, 39);
   color: white;
 }
 
@@ -225,8 +225,8 @@ form {
   display: flex;
   background-color: rgb(255, 125, 72);
   border: 1px solid rgb(255, 125, 72);
-  border-radius: 10px; 
-  padding: 5px; 
+  border-radius: 10px;
+  padding: 5px;
   margin-right: 10px;
 }
 
@@ -236,13 +236,12 @@ form {
   align-items: center;
 }
 
-
 #get-apod-form,
 #apod-save-form {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 5px; 
+  margin: 0 5px;
 }
 
 #apod-save-pic {
