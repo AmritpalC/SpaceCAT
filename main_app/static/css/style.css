@@ -282,3 +282,7 @@ form {
   height: 60px;
   padding-top: 15px;
 }
+
+.href-log-sign {
+  text-decoration: none;
+}
