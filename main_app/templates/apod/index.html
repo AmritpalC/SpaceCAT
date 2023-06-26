@@ -6,13 +6,9 @@
 </div>
 
 <div id="apod-idx-save">
-        <form id="get-apod-form" action="{% url 'apod_index' %}" method="GET">
-           <div><input id="date-style" type="date" name="date" value="{{ selected_date }}"></div>
-            <input class="btn" type="submit" value="Get Picture">
-        </form>
-    <form action="{% url 'apod_save' %}" method="GET">
-        <input type="hidden" name="date" value="{{ selected_date }}">
-        <input class="btn-savephoto" type="submit" value="  Save Photo 💜  ">
+    <form id="get-apod-form" action="{% url 'apod_index' %}" method="GET">
+        <div><input id="date-style" type="date" name="date" value="{{ selected_date }}"></div>
+        <input class="btn" type="submit" value="Get Picture">
     </form>
 </div>
 <div>
@@ -25,6 +21,12 @@
         <h1> {{ imageData.title }}</h1>
         <hr>
         <h1> {{ imageData.date }}</h1>
+        <span>
+            <form action="{% url 'apod_save' %}" method="GET">
+                <input type="hidden" name="date" value="{{ selected_date }}">
+                <input class="btn-savephoto" type="submit" value="  Save Photo 💜  ">
+            </form>
+        </span>
         <hr>
         <p> {{ imageData.explanation }}</p>
         <hr>
