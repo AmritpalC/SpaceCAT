@@ -25,13 +25,15 @@
         <div class="card">
           <img src="{{ apod.url }}" class="card-img-top" data-bs-toggle="modal" data-bs-target="#exampleModal{{ apod.id }}">
           <div class="card-body">
-            <span class="card-title">{{ apod.title }}</span>
+            <div class="card-title">{{ apod.title }}</div>
             <div class="card-action">
+              <a href="{% url 'apod_detail' apod.id %}">
+                <button class="btn-details-album">Details</button>
+              </a>
               <form action="{% url 'remove_photo_from_album' album.id apod.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn">Remove</button>
+                <button type="submit" class="btn-remove">Remove</button>
               </form>
-              <a class="btn" href="{% url 'apod_detail' apod.id %}">Details</a>
             </div>
           </div>
         </div>
@@ -66,13 +68,15 @@
         <div class="card">
           <img src="{{ apod.url }}" class="card-img-top" data-bs-toggle="modal" data-bs-target="#exampleModal{{ apod.id }}">
           <div class="card-body">
-            <span class="card-title">{{ apod.title }}</span>
+            <div class="card-title">{{ apod.title }}</div>
             <div class="card-action">
+              <a href="{% url 'apod_detail' apod.id %}">
+                <button class="btn-details-album">Details</button>
+              </a>
               <form action="{% url 'add_photo_to_album' album.id apod.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn">Add</button>
+                <button type="submit" class="btn-add">Add</button>
               </form>
-              <a class="btn" href="{% url 'apod_detail' apod.id %}">Details</a>
             </div>
           </div>
         </div>

@@ -14,6 +14,10 @@ h1, h2, h3, h4, p, .name, .description {
   color: white;
 }
 
+h3 {
+  height: 60px;
+}
+
 .selector-for-some-widget {
   box-sizing: content-box;
 }
@@ -32,7 +36,12 @@ h1, h2, h3, h4, p, .name, .description {
   gap: 10px;
 }
 #wrap .container .row .col .photos .card {
+  border-color: rgb(255, 125, 72);
+  background-color: darkgrey;
   width: 250px;
+}
+#wrap .container .row .col .photos .card .card-body .card-title {
+  height: 66px;
 }
 
 .footer {
@@ -161,7 +170,10 @@ form {
 
 .btn,
 .btn-pod,
-.btn-pod-details {
+.btn-pod-details,
+.btn-add,
+.btn-remove,
+.btn-details-album {
   transition: all 0.5s ease;
   width: 100%;
   border-radius: 30px;
@@ -173,7 +185,8 @@ form {
   margin-bottom: 1em;
 }
 
-.btn-pod-details {
+.btn-pod-details,
+.btn-details-album {
   width: 80%;
 }
 
@@ -190,8 +203,16 @@ form {
 }
 
 .btn-pod:hover,
-.btn-pod:focus {
+.btn-pod:focus,
+.btn-remove:hover,
+.btn-remove:focus {
   background-color: red;
+  color: white;
+}
+
+.btn-add:hover,
+.btn-add:focus {
+  background-color: green;
   color: white;
 }
 
