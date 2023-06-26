@@ -117,6 +117,21 @@ h3 {
   background-color: rgb(12, 0, 46);
 }
 
+.app-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: rgb(255, 125, 72);
+}
+
 /* @media screen and (max-width: 640px) {
 	.main-content{width: 90%;}
 	.company__info{
@@ -173,7 +188,8 @@ form {
 .btn-details-album,
 .btn-savephoto {
   transition: all 0.5s ease;
-  width: 100%;
+  width: auto;
+  padding: 0.5rem 1.5rem;
   border-radius: 30px;
   color: rgb(255, 125, 72);
   font-weight: 600;
@@ -185,7 +201,8 @@ form {
 
 .btn-pod-details,
 .btn-details-album {
-  width: 80%;
+  width: auto;
+  padding: 0.5rem 1.5rem;
 }
 
 .btn:hover,
