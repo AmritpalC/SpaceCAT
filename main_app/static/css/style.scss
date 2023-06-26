@@ -161,7 +161,7 @@ form {
 .form__input {
 	width: 100%;
 	border: 0px solid transparent;
-	border-radius: 4px;
+	border-radius: 10px;
 	border-bottom: 1px solid #aaa;
 	padding: 1em .5em .5em;
 	padding-left: 2em;
@@ -173,7 +173,8 @@ form {
 .form__input:focus {
 	border-bottom-color: grey;
 	box-shadow: 0 0 5px rgba(0, 80, 80, .4);
-	border-radius: 8px;
+	border: 1px solid rgb(255, 125, 72);
+	border-radius: 15px;
 }
 
 .btn,
@@ -181,7 +182,8 @@ form {
 .btn-pod-details,
 .btn-add,
 .btn-remove,
-.btn-details-album {
+.btn-details-album,
+.btn-savephoto {
 	transition: all .5s ease;
 	width: 100%;
 	border-radius: 30px;
@@ -198,9 +200,16 @@ form {
 }
 
 .btn:hover,
-.btn:focus {
+.btn:focus,
+.btn-savephoto:hover,
+.btn-savephoto:focus {
 	background-color: grey;
 	color: #fff;
+}
+
+.btn-savephoto {
+	height: 38px;
+	
 }
 
 .btn-pod-details:hover, 
@@ -239,6 +248,7 @@ form {
 	border-radius: 10px; 
 	padding: 5px; 
 	margin-right: 10px;
+	margin-top: 8px;
   }
   
   #apod-idx-save {
@@ -261,7 +271,4 @@ form {
 	justify-content: center;
   }
   
-  #apod-save-pic.btn {
-	margin-left: 10;
-  }
 
