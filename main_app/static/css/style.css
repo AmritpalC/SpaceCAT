@@ -7,6 +7,8 @@
 html, body {
   height: 100%;
   background-color: rgb(22, 26, 31);
+  /* ! added */
+  color: white;
 }
 
 .selector-for-some-widget {
@@ -119,7 +121,8 @@ form {
 .form__input {
   width: 100%;
   border: 0px solid transparent;
-  border-radius: 4px;
+  /* ! increased */
+  border-radius: 10px;
   border-bottom: 1px solid #aaa;
   padding: 1em 0.5em 0.5em;
   padding-left: 2em;
@@ -131,7 +134,9 @@ form {
 .form__input:focus {
   border-bottom-color: grey;
   box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
-  border-radius: 8px;
+  /* ! increased & colour added */
+  border: 1px solid rgb(255, 125, 72);
+  border-radius: 15px;
 }
 
 .btn {
