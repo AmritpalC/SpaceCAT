@@ -219,4 +219,37 @@ form {
 
 .card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#date-style {
+  display: flex;
+  background-color: rgb(255, 125, 72);
+  border: 1px solid rgb(255, 125, 72);
+  border-radius: 10px; 
+  padding: 5px; 
+  margin-right: 10px;
+}
+
+#apod-idx-save {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#get-apod-form,
+#apod-save-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px; 
+}
+
+#apod-save-pic {
+  display: flex;
+  justify-content: center;
+}
+
+#apod-save-pic.btn {
+  margin-left: 10;
 }/*# sourceMappingURL=style.css.map */
