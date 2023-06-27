@@ -27,13 +27,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 env = environ.Env()
 environ.Env.read_env()
 
+# IP Geolocation API key & URL
+dt_key = env('API_KEY')
 
 # Create your views here.
 def home(request):
   # Current Time and Location api
-  api_key = '7f8e23bcf09d466893f5ac68bfb5b53b'  # IP Geolocation API key
-  url = f'https://api.ipgeolocation.io/ipgeo?apiKey={api_key}'
-
+  url = f'https://api.ipgeolocation.io/ipgeo?apiKey={dt_key}'
   response = requests.get(url)
   data = response.json()
 
