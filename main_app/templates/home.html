@@ -15,7 +15,7 @@
 <div class="card w-100 p-3 bg-dark text-white border-light mb-3 mt-4">
   <h2 class="card-title">{{ random_apod.title }}</h2>
   <a href="{% url 'apod_detail' random_apod.id %}">
-    <img src="{{ random_apod.url }}" class="img-fluid" alt="Responsive image"></a>
+    <img src="{{ random_apod.url }}" class="img-fluid mt-2" alt="Responsive image"></a>
   <div class="card-body">
     <h3 class="card-text">{{ random_apod.date }}</h3>
   </div>

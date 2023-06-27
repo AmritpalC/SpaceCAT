@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="mt-5">
-    <h3>Explore NASA's Picture's of the Day. If you find one you like, you can save the photo!</h3>
+<div>
+    <h1>Search APOD</h1>
+    <h3 class="mt-4">Explore NASA's Astronomy Picture of the Day. If you find one you like, you can save the photo!</h3>
 </div>
 
 <div id="apod-idx-save">
@@ -16,6 +17,7 @@
     <h4>{{ message }}</h4>
     {% endif %}
 </div>
+<hr>
 <div class="mt-4">
     {% if imageData %}
     <h1> {{ imageData.title }}</h1>
@@ -26,7 +28,7 @@
             <span>
                 <form action="{% url 'apod_save' %}" method="GET">
                     <input type="hidden" name="date" value="{{ selected_date }}">
-                    <input class="btn-savephoto" type="submit" value="Save Photo">
+                    <input class="btn-savephoto" type="submit" value="  Save Photo 🧡  ">
                 </form>
             </span>
         </div>
