@@ -55,7 +55,9 @@ h3 {
 #wrap .container .card-album .album a {
   text-decoration: none;
   display: block;
-  color: rgb(26, 70, 180);
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(12, 0, 46);
 }
 #wrap .container .card-album .album a:hover {
   color: #ffffff;
@@ -116,11 +118,12 @@ h3 {
 }
 #wrap .container .row .col .photos .card {
   border-color: rgb(255, 125, 72);
-  background-color: darkgrey;
+  background-color: rgb(34, 31, 70);
   width: 250px;
 }
 #wrap .container .row .col .photos .card .card-body .card-title {
   height: 66px;
+  color: navajowhite;
 }
 
 .footer {
@@ -140,9 +143,9 @@ h3 {
   justify-content: center;
 }
 .card__container .card {
-  width: 200px;
+  width: 230px;
   border-radius: 30px;
-  background-color: rgb(26, 70, 180);
+  background-color: rgb(34, 31, 50);
   border-color: rgb(255, 125, 72);
 }
 .card__container .card-title {
@@ -159,7 +162,7 @@ h3 {
 }
 
 .card-title {
-  height: 48px;
+  height: 60px;
 }
 
 .card {
@@ -202,6 +205,10 @@ h3 {
 
 .navbar-custom {
   background-color: rgb(12, 0, 46);
+}
+
+.navbar-toggler {
+  margin-right: 10px;
 }
 
 .app-title {
@@ -273,7 +280,8 @@ form {
 .btn-add,
 .btn-remove,
 .btn-details-album,
-.btn-savephoto {
+.btn-savephoto,
+.btn-album-delete {
   transition: all 0.5s ease;
   width: auto;
   border-radius: 30px;
@@ -290,8 +298,13 @@ form {
   line-height: 35px;
 }
 
-.btn-pod-details,
 .btn-details-album {
+  width: 150px;
+  padding: 0.5rem 1.5rem;
+}
+
+.btn-pod,
+.btn-pod-details {
   width: auto;
   padding: 0.5rem 1.5rem;
 }
@@ -305,7 +318,9 @@ form {
 .btn:hover,
 .btn:focus,
 .btn-savephoto:hover,
-.btn-savephoto:focus {
+.btn-savephoto:focus,
+.btn-details-album:hover,
+.btn-details-album:focus {
   background-color: grey;
   color: #fff;
 }
@@ -347,10 +362,16 @@ form {
   display: flex;
   background-color: rgb(255, 125, 72);
   border: 1px solid rgb(255, 125, 72);
-  border-radius: 10px;
-  padding: 5px;
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+  padding: 10px;
   margin-right: 10px;
   margin-top: 8px;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
 #apod-idx-save {
@@ -377,7 +398,7 @@ form {
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  padding-top: 15px;
+  padding: 15px 0px;
 }
 
 .modal-color {
@@ -387,6 +408,7 @@ form {
 .href-log-sign {
   text-decoration: none;
 }
+
 .href-log-sign:hover {
   color: rgb(255, 125, 72);
 }
@@ -398,4 +420,13 @@ form {
 }
 form .form-control {
   margin-bottom: 15px;
+}
+
+.logo-app-name {
+  display: flex;
+  align-items: center;
+}
+
+.message-text {
+  color: rgb(255, 125, 72);
 }/*# sourceMappingURL=style.css.map */

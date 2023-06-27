@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="mt-5">
-    <h3>Explore NASA's Picture's of the Day. If you find one you like, you can save the photo!</h3>
+<div>
+    <h1>Search APOD</h1>
+    <h3 class="mt-4">Explore NASA's Astronomy Picture of the Day. If you find one you like, you can save the photo!</h3>
 </div>
 
 <div id="apod-idx-save">
@@ -11,33 +12,40 @@
         <input class="btn" type="submit" value="Get Picture">
     </form>
 </div>
-<div>
-    {% if message %}
-    <h4>{{ message }}</h4>
-    {% endif %}
-</div>
+<hr>
 <div class="mt-4">
     {% if imageData %}
-    <h1> {{ imageData.title }}</h1>
-    <hr>
-    <div id="img-date-btn">
-        <h1> {{ imageData.date }}</h1>
-        <div class="">
-            <span>
-                <form action="{% url 'apod_save' %}" method="GET">
-                    <input type="hidden" name="date" value="{{ selected_date }}">
-                    <input class="btn-savephoto" type="submit" value="Save Photo">
-                </form>
-            </span>
+        <h1> {{ imageData.title }}</h1>
+        <hr>
+        <div id="img-date-btn">
+            <h1> {{ imageData.date }}</h1>
+            <div class="">
+                <span>
+                    <form action="{% url 'apod_save' %}" method="GET">
+                        <input type="hidden" name="date" value="{{ selected_date }}">
+                        <input class="btn-savephoto" type="submit" value="  Save Photo 🧡  ">
+                    </form>
+                </span>
+            </div>
         </div>
-    </div>
-    <hr>
-    <p> {{ imageData.explanation }}</p>
-    <hr>
-    <img src="{{ imageData.url }}">
-    <hr>
+        <div class="message-text">
+            {% if message %}
+            <h4>{{ message }}</h4>
+            {% endif %}
+        </div>
+        <hr>
+        <p> {{ imageData.explanation }}</p>
+        <hr>
+        <img src="{{ imageData.url }}" class="img-fluid">
+        <hr>
     {% else %}
-    <h4>No image currently selected.</h4>
+        {% if already_saved_msg %}
+            <div class="message-text">
+                <h4>{{ already_saved_msg }}</h4>
+                <hr>
+            </div>
+        {% endif %}
+        <h4>No image currently selected.</h4>
     {% endif %}
 </div>
 
