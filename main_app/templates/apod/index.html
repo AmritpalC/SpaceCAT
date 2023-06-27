@@ -19,11 +19,6 @@
     <hr>
     <div id="img-date-btn">
         <h1> {{ imageData.date }}</h1>
-        <div class="message-text">
-            {% if message %}
-            <h4>{{ message }}</h4>
-            {% endif %}
-        </div>
         <div class="">
             <span>
                 <form action="{% url 'apod_save' %}" method="GET">
@@ -33,10 +28,15 @@
             </span>
         </div>
     </div>
+    <div class="message-text">
+        {% if message %}
+        <h4>{{ message }}</h4>
+        {% endif %}
+    </div>
     <hr>
     <p> {{ imageData.explanation }}</p>
     <hr>
-    <img src="{{ imageData.url }}">
+    <img src="{{ imageData.url }}" class="img-fluid">
     <hr>
     {% else %}
     <h4>No image currently selected.</h4>
