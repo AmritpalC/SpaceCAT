@@ -410,3 +410,7 @@ form {
 form .form-control {
   margin-bottom: 15px;
 }/*# sourceMappingURL=style.css.map */
+
+.message-text {
+  color: rgb(255, 125, 72);
+}
