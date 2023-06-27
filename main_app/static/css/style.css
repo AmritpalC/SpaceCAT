@@ -291,9 +291,14 @@ form {
   line-height: 35px;
 }
 
-.btn-pod-details,
+
 .btn-details-album {
   width: 150px;
+  padding: 0.5rem 1.5rem;
+}
+
+.btn-pod-details {
+  width: auto;
   padding: 0.5rem 1.5rem;
 }
 
