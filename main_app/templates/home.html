@@ -6,7 +6,7 @@
 </div>
 
 {% if user.is_authenticated %}
-<h1 class="mt-3">☄️ Welcome to Space {{ user.username|title }} 🪐</h1>
+<h1 class="mt-3">☄️ Welcome to Space, {{ user.username|title }} 🪐</h1>
 {% else %}
 <h2><a class="href-log-sign" href="{% url 'login' %}">Log In</a> or <a class="href-log-sign" href="{% url 'signup' %}">Sign Up</a> to access the Universe 🚀</h2>
 {% endif %}
@@ -22,7 +22,5 @@
 </div>
 
 <!-- <img src="{{ random_apod.url }}"> -->
-
-
 
 {% endblock %}
