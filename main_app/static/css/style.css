@@ -11,6 +11,11 @@ body {
   color: white;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
 h3 {
   height: 60px;
 }
@@ -26,11 +31,88 @@ h3 {
   overflow: auto;
   padding-bottom: 20px;
 }
+#wrap .container .card-album {
+  max-width: 350px;
+  width: 100%;
+  height: 100px;
+  margin: 10px auto;
+  background-color: grey;
+  border-radius: 30px;
+  border: 2px solid rgb(255, 125, 72);
+}
+#wrap .container .card-album:hover {
+  background-color: darkgrey;
+  color: white;
+}
+#wrap .container .card-album:focus {
+  background-color: darkgrey;
+  color: white;
+}
+#wrap .container .card-album .album {
+  text-align: center;
+  line-height: 100px;
+}
+#wrap .container .card-album .album a {
+  text-decoration: none;
+  display: block;
+  color: rgb(26, 70, 180);
+}
+#wrap .container .card-album .album a:hover {
+  color: #ffffff;
+}
+#wrap .container .card-content {
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 600px) {
+  #wrap .container .card-content {
+    flex-direction: column;
+  }
+}
+#wrap .container .card-content .card-title__container {
+  text-align: left;
+  color: #ffffff;
+  border: none;
+}
+#wrap .container .card-content .card-title__container h2 {
+  font-size: 35px;
+  line-height: 40px;
+  margin-top: 20px;
+}
+#wrap .container .card-content .card-title__container p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 20px;
+}
+#wrap .container .card-content .card-action {
+  display: flex;
+}
+@media only screen and (max-width: 600px) {
+  #wrap .container .card-content .card-action {
+    flex-direction: column;
+  }
+}
+#wrap .container .card-content .card-action .btn {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 200px;
+}
+@media only screen and (max-width: 600px) {
+  #wrap .container .card-content .card-action .btn {
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+}
 #wrap .container .row .col .photos {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
+}
+@media only screen and (max-width: 600px) {
+  #wrap .container .row .col .photos {
+    justify-content: center;
+  }
 }
 #wrap .container .row .col .photos .card {
   border-color: rgb(255, 125, 72);
@@ -48,13 +130,14 @@ h3 {
   margin: 0 20px;
 }
 .footer h2 {
-  font-size: 1.2rem;
+  font-size: 12px;
 }
 
 .card__container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  justify-content: center;
 }
 .card__container .card {
   width: 200px;
@@ -113,6 +196,10 @@ h3 {
   width: 120px;
 }
 
+.navbar-nav {
+  padding-left: 20px;
+}
+
 .navbar-custom {
   background-color: rgb(12, 0, 46);
 }
@@ -120,11 +207,6 @@ h3 {
 .app-title {
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-.logo-app-name {
-  display: flex;
-  align-items: center;
 }
 
 .nav-link {
@@ -194,7 +276,6 @@ form {
 .btn-savephoto {
   transition: all 0.5s ease;
   width: auto;
-  padding: 0.5rem 1.5rem;
   border-radius: 30px;
   color: rgb(255, 125, 72);
   font-weight: 600;
@@ -202,12 +283,23 @@ form {
   border: 1px solid rgb(255, 125, 72);
   margin-top: 1.5em;
   margin-bottom: 1em;
+  width: 100%;
+  max-width: 150px;
+  height: 50px;
+  font-size: 15px;
+  line-height: 35px;
 }
 
 .btn-pod-details,
 .btn-details-album {
   width: auto;
   padding: 0.5rem 1.5rem;
+}
+
+.btn-pod,
+.btn-pod-details {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .btn:hover,
@@ -219,7 +311,7 @@ form {
 }
 
 .btn-savephoto {
-  height: 38px;
+  height: 50px;
 }
 
 .btn-pod-details:hover,
@@ -278,7 +370,7 @@ form {
 #apod-save-pic {
   display: flex;
   justify-content: center;
-}/*# sourceMappingURL=style.css.map */
+}
 
 #img-date-btn {
   display: flex;
@@ -292,6 +384,8 @@ form {
   background-color: rgb(12, 0, 46);
 }
 
+}
+
 .href-log-sign {
   text-decoration: none;
 }
@@ -299,3 +393,11 @@ form {
 .href-log-sign:hover {
   color: rgb(255, 125, 72);
 }
+form {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+form .form-control {
+  margin-bottom: 15px;
+}/*# sourceMappingURL=style.css.map */
