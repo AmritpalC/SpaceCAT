@@ -183,7 +183,7 @@ def apod_save(request):
     apod = Apod.objects.get(date=selected_date)
     if request.user in apod.users.all():
       print('APOD already saved by user')
-      return render(request, 'apod/index.html', { 'imageData': None, 'message': 'Picture already saved' })
+      return render(request, 'apod/index.html', { 'imageData': None, 'already_saved_msg': 'Picture already saved' })
     else:
       apod.users.add(request.user)
       return render(request, 'apod/index.html', { 'message': 'Picture added to your photos!' })

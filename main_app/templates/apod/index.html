@@ -15,31 +15,37 @@
 <hr>
 <div class="mt-4">
     {% if imageData %}
-    <h1> {{ imageData.title }}</h1>
-    <hr>
-    <div id="img-date-btn">
-        <h1> {{ imageData.date }}</h1>
-        <div class="">
-            <span>
-                <form action="{% url 'apod_save' %}" method="GET">
-                    <input type="hidden" name="date" value="{{ selected_date }}">
-                    <input class="btn-savephoto" type="submit" value="  Save Photo 🧡  ">
-                </form>
-            </span>
+        <h1> {{ imageData.title }}</h1>
+        <hr>
+        <div id="img-date-btn">
+            <h1> {{ imageData.date }}</h1>
+            <div class="">
+                <span>
+                    <form action="{% url 'apod_save' %}" method="GET">
+                        <input type="hidden" name="date" value="{{ selected_date }}">
+                        <input class="btn-savephoto" type="submit" value="  Save Photo 🧡  ">
+                    </form>
+                </span>
+            </div>
         </div>
-    </div>
-    <div class="message-text">
-        {% if message %}
-        <h4>{{ message }}</h4>
-        {% endif %}
-    </div>
-    <hr>
-    <p> {{ imageData.explanation }}</p>
-    <hr>
-    <img src="{{ imageData.url }}" class="img-fluid">
-    <hr>
+        <div class="message-text">
+            {% if message %}
+            <h4>{{ message }}</h4>
+            {% endif %}
+        </div>
+        <hr>
+        <p> {{ imageData.explanation }}</p>
+        <hr>
+        <img src="{{ imageData.url }}" class="img-fluid">
+        <hr>
     {% else %}
-    <h4>No image currently selected.</h4>
+        {% if already_saved_msg %}
+            <div class="message-text">
+                <h4>{{ already_saved_msg }}</h4>
+                <hr>
+            </div>
+        {% endif %}
+        <h4>No image currently selected.</h4>
     {% endif %}
 </div>
 
