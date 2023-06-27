@@ -116,6 +116,7 @@ h3 {
 						background-color: darkgrey;
 						width: 250px;
 						.card-body {
+							
 							.card-title {
 								height: 66px;
 							}
@@ -148,9 +149,9 @@ h3 {
 	justify-content: center;
 
 	.card {
-		width: 200px;
+		width: 230px;
 		border-radius: 30px;
-		background-color: rgb(26, 70, 180);
+		background-color: rgb(34,31,50);
 		border-color: rgb(255, 125, 72);
 	}
 	
@@ -170,7 +171,7 @@ h3 {
 }
 
 .card-title {
-	height: 48px;
+	height: 60px;
 }
 
 .card {
@@ -302,10 +303,15 @@ form {
     line-height: 35px;
 }
 
-.btn-pod-details,
 .btn-details-album {
-	width: 150px;
-	padding: 0.5rem 1.5rem;
+  width: 150px;
+  padding: 0.5rem 1.5rem;
+}
+
+.btn-pod,
+.btn-pod-details {
+  width: auto;
+  padding: 0.5rem 1.5rem;
 }
 
 .btn-pod,
@@ -362,12 +368,18 @@ form {
 	display: flex;
 	background-color: rgb(255, 125, 72);
 	border: 1px solid rgb(255, 125, 72);
-	border-radius: 10px; 
-	padding: 5px; 
+	color: white;
+	border-radius: 20px; 
+	text-align: center;
+	padding: 10px; 
 	margin-right: 10px;
 	margin-top: 8px;
   }
   
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
   #apod-idx-save {
 	display: flex;
 	justify-content: center;
