@@ -9,7 +9,7 @@
         <div class="card">
             <img src="{{ apod.url }}" class="card-img-top">
             <div class="card-body">
-                <div class="card-title">{{ apod.title }}</div>
+                <div class="card-title all-apod-card-title">{{ apod.title }}</div>
                 <div class="card-text">{{ apod.date }}</div>
                 <div class="card-action">
                     <a href="{% url 'apod_detail' apod.id %}">

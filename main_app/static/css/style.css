@@ -158,13 +158,13 @@ h3 {
   border: 1px solid rgb(255, 125, 72);
 }
 
-.card-title {
-  height: 48px;
-}
-
 .card {
   margin-bottom: 10px;
   border-radius: 30px;
+}
+
+.all-apod-card-title {
+  height: 48px;
 }
 
 .main-content {
@@ -352,10 +352,16 @@ form {
   display: flex;
   background-color: rgb(255, 125, 72);
   border: 1px solid rgb(255, 125, 72);
-  border-radius: 10px;
-  padding: 5px;
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+  padding: 10px;
   margin-right: 10px;
   margin-top: 8px;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
 #apod-idx-save {
