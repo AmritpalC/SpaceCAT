@@ -12,11 +12,6 @@
         <input class="btn" type="submit" value="Get Picture">
     </form>
 </div>
-<div>
-    {% if message %}
-    <h4>{{ message }}</h4>
-    {% endif %}
-</div>
 <hr>
 <div class="mt-4">
     {% if imageData %}
@@ -24,6 +19,11 @@
     <hr>
     <div id="img-date-btn">
         <h1> {{ imageData.date }}</h1>
+        <div class="message-text">
+            {% if message %}
+            <h4>{{ message }}</h4>
+            {% endif %}
+        </div>
         <div class="">
             <span>
                 <form action="{% url 'apod_save' %}" method="GET">
