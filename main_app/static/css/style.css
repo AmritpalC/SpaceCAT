@@ -55,7 +55,9 @@ h3 {
 #wrap .container .card-album .album a {
   text-decoration: none;
   display: block;
-  color: rgb(26, 70, 180);
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(12, 0, 46);
 }
 #wrap .container .card-album .album a:hover {
   color: #ffffff;
@@ -116,11 +118,12 @@ h3 {
 }
 #wrap .container .row .col .photos .card {
   border-color: rgb(255, 125, 72);
-  background-color: darkgrey;
+  background-color: rgb(34, 31, 70);
   width: 250px;
 }
 #wrap .container .row .col .photos .card .card-body .card-title {
   height: 66px;
+  color: navajowhite;
 }
 
 .footer {
