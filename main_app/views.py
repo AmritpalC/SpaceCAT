@@ -6,6 +6,8 @@ from .forms import ApodForm, SavingForm
 
 import requests, random
 import environ
+import time
+from ratelimiter import RateLimiter
 
 # New user
 from django.contrib.auth import login
@@ -24,6 +26,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Initialising env
 env = environ.Env()
 environ.Env.read_env()
+
 
 # Create your views here.
 def home(request):
@@ -157,6 +160,7 @@ def apod_delete(request, apod_id):
 
 # ? Splitting API request from functions
 # ! May revert back to above functions, passing selected_date as a context var in apod_index
+@RateLimiter(max_calls=10, period=1)
 def fetch_apod_data(selected_date):
   url = f"{ROOT_URL}/planetary/apod?api_key={token}&date={selected_date}"
   response = requests.get(url)
